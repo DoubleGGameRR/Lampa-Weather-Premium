@@ -1,5 +1,5 @@
 /**
- * Lampa Weather Premium • Mykytyntsi Edition v1.0.0
+ * Lampa Weather Premium • Mykytyntsi Edition v1.0.1
  * Weather: Open-Meteo (https://open-meteo.com) — free for non-commercial use.
  * No API key, location permissions, jQuery plugins, external icons or libraries.
  * Fixed locations are intentional: no IP-based city detection.
@@ -63,7 +63,7 @@
         var el = document.createElement('style');
         el.id = ID + '-css';
         el.textContent = [
-            '.mpw{position:relative;box-sizing:border-box;display:inline-flex;align-items:center;vertical-align:middle;gap:.48em;flex:0 0 auto;min-height:2.8em;max-width:25em;margin-left:.85em;padding:.28em .83em .3em .55em;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#fff;background:linear-gradient(118deg,rgba(55,72,104,.68),rgba(25,31,50,.64));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 .22em 1.15em rgba(0,0,0,.14);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);font-family:inherit;line-height:1;pointer-events:none;overflow:hidden;isolation:isolate;white-space:nowrap;transition:background .6s ease, border-color .6s ease;}',
+            '.mpw{position:relative;box-sizing:border-box;display:inline-flex;align-items:center;vertical-align:middle;gap:.48em;flex:0 0 18em;width:18em;min-width:18em;max-width:18em;height:2.8em;min-height:2.8em;max-height:2.8em;margin-left:.85em;padding:.28em .83em .3em .55em;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#fff;background:linear-gradient(118deg,rgba(55,72,104,.68),rgba(25,31,50,.64));box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 .22em 1.15em rgba(0,0,0,.14);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);font-family:inherit;line-height:1;pointer-events:none;overflow:hidden;isolation:isolate;white-space:nowrap;transition:background .6s ease, border-color .6s ease;}',
             '.mpw:before{content:"";position:absolute;inset:-150% -30%;z-index:-1;opacity:.4;transform:translateX(-70%) rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent);animation:mpw-glint 18s ease-in-out infinite;}',
             '.mpw.mpw-clear{border-color:rgba(255,212,139,.24);background:linear-gradient(115deg,rgba(113,76,37,.68),rgba(45,53,74,.7));}',
             '.mpw.mpw-cloudy{background:linear-gradient(115deg,rgba(61,79,107,.78),rgba(37,45,65,.78));}',
@@ -72,10 +72,10 @@
             '.mpw.mpw-night{background:linear-gradient(115deg,rgba(49,46,93,.81),rgba(18,28,62,.87));border-color:rgba(159,173,255,.28);}',
             '.mpw-icon{width:2.1em;height:2.1em;display:grid;place-items:center;flex:0 0 auto;filter:drop-shadow(0 .12em .2em rgba(0,0,0,.13));}',
             '.mpw-icon svg{height:100%;width:100%;display:block;overflow:visible;}',
-            '.mpw-temp{font-size:1.42em;font-weight:700;line-height:1;letter-spacing:-.055em;font-variant-numeric:tabular-nums;flex-shrink:0;text-shadow:0 1px 9px rgba(0,0,0,.14);}',
-            '.mpw-text{min-width:0;display:flex;flex-direction:column;gap:.23em;}',
-            '.mpw-place{font-size:.83em;line-height:1.05;font-weight:650;letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;}',
-            '.mpw-desc{font-size:.62em;line-height:1.08;opacity:.82;overflow:hidden;text-overflow:ellipsis;transition:opacity .22s ease;}',
+            '.mpw-temp{font-size:1.42em;font-weight:700;line-height:1;letter-spacing:-.055em;font-variant-numeric:tabular-nums;flex:0 0 3em;width:3em;text-align:center;text-shadow:0 1px 9px rgba(0,0,0,.14);}',
+            ' .mpw-text{min-width:0;width:0;flex:1 1 0;display:flex;flex-direction:column;gap:.23em;overflow:hidden;}',
+            ' .mpw-place{display:block;width:100%;white-space:nowrap;font-size:.83em;line-height:1.05;font-weight:650;letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;}',
+            ' .mpw-desc{display:block;width:100%;white-space:nowrap;font-size:.62em;line-height:1.08;opacity:.82;overflow:hidden;text-overflow:ellipsis;transition:opacity .22s ease;}',
             '.mpw-desc.mpw-fade{opacity:.05;}',
             '.mpw.mpw-clean{background:transparent!important;border-color:transparent!important;box-shadow:none!important;-webkit-backdrop-filter:none;backdrop-filter:none;padding-left:0;padding-right:0;}',
             '.mpw.mpw-clean:before{display:none;}',
@@ -89,8 +89,8 @@
             '@keyframes mpw-cloud{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.2px)}}',
             '@keyframes mpw-rain{0%{opacity:0;transform:translateY(-3px)}25%{opacity:1}85%,100%{opacity:0;transform:translateY(4px)}}',
             '@keyframes mpw-blink{0%,100%{opacity:.3}50%{opacity:1}}',
-            '@media (max-width:1400px){.mpw{max-width:17em;padding-right:.55em}.mpw-icon{width:1.85em;height:1.85em}.mpw-temp{font-size:1.25em}.mpw-place{font-size:.73em}.mpw-desc{font-size:.58em}}',
-            '@media (max-width:850px){.mpw{margin-left:.35em;padding:.25em .45em;min-height:2.25em;gap:.25em;max-width:8em}.mpw-icon{width:1.65em;height:1.65em}.mpw-text{display:none}.mpw-temp{font-size:1.2em}}',
+            '@media (max-width:1400px){.mpw{width:16em;min-width:16em;max-width:16em;flex-basis:16em;padding-right:.55em}.mpw-icon{width:1.85em;height:1.85em}.mpw-temp{font-size:1.25em}.mpw-place{font-size:.73em}.mpw-desc{font-size:.58em}}',
+            '@media (max-width:850px){.mpw{margin-left:.35em;padding:.25em .45em;width:7.4em;min-width:7.4em;max-width:7.4em;flex-basis:7.4em;height:2.25em;min-height:2.25em;max-height:2.25em;gap:.25em}.mpw-icon{width:1.65em;height:1.65em}.mpw-text{display:none}.mpw-temp{font-size:1.2em}}',
             '@media (prefers-reduced-motion:reduce){.mpw *, .mpw:before{animation:none!important;transition:none!important}}'
         ].join('\n');
         (document.head || document.documentElement).appendChild(el);
